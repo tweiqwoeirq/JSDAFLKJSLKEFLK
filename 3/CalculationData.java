@@ -4,47 +4,47 @@ import java.io.Serializable;
 public class CalculationData implements Serializable {
     private static final long serialVersionUID = 1L; // версія серіалізації
     
-    private double Mass; // маса
-    private double Height; // висота
-    private double MaxEnergy; // найбільше значення енергії
+    private double mass; // маса
+    private double height; // висота
+    private double maxEnergy; // найбільше значення енергії
 
     // Конструктор класу
     public CalculationData(double mass, double height, double maxEnergy) {
-        this.Mass = mass;
-        this.Height = height;
-        this.MaxEnergy = maxEnergy;
+        this.mass = mass;
+        this.height = height;
+        this.maxEnergy = maxEnergy;
     }
 
     // Геттери та сеттери для доступу до полів класу
     public double getMass() {
-        return Mass;
+        return mass;
     }
 
     public void setMass(double mass) {
-        this.Mass = mass;
+        this.mass = mass;
     }
 
     public double getHeight() {
-        return Height;
+        return height;
     }
 
     public void setHeight(double height) {
-        this.Height = height;
+        this.height = height;
     }
 
     public double getMaxEnergy() {
-        return MaxEnergy;
+        return maxEnergy;
     }
 
     public void setMaxEnergy(double maxEnergy) {
-        this.MaxEnergy = maxEnergy;
+        this.maxEnergy = maxEnergy;
     }
 
     // Перевизначення методу toString() для зручного виводу
     @Override
 public String toString() {
     
-    return "CalculationData | Mass = " + Mass + " | Height = " + Height + " | MaxEnergy = " + MaxEnergy;
+    return "CalculationData | Mass = " + mass + " | Height = " + height + " | MaxEnergy = " + maxEnergy;
 }
 
 }
