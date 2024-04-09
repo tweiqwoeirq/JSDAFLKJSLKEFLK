@@ -4,15 +4,18 @@ import java.io.InputStreamReader;
 
 public class Test {
     public static void main(String[] args) {
-        double mass = 10.5;
-        double height = 20.0;
-
-        double maxEnergy = EnergyCalculator.calculateMaxEnergy(mass, height);
-
-        CalculationData data = new CalculationData(mass, height, maxEnergy);
-
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Enter the mass:");
+            double mass = Double.parseDouble(reader.readLine());
+
+            System.out.println("Enter the height:");
+            double height = Double.parseDouble(reader.readLine());
+
+            double maxEnergy = EnergyCalculator.calculateMaxEnergy(mass, height);
+
+            CalculationData data = new CalculationData(mass, height, maxEnergy);
+
             String input;
             do {
                 System.out.println("Enter a command ('view', 'quit', 'save'):");
@@ -36,7 +39,7 @@ public class Test {
                         System.out.println("Invalid command. Please try again.");
                 }
             } while (!input.equals("quit"));
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException | NumberFormatException e) {
             e.printStackTrace();
         }
     }
