@@ -7,6 +7,7 @@ public class TextDisplay implements Displayable {
 
     @Override
     public void display() {
+        // Виведення даних у вигляді текстового представлення
         System.out.println("--------------------------------------------------");
         System.out.println("| Параметр           | Значення               |");
         System.out.println("--------------------------------------------------");
