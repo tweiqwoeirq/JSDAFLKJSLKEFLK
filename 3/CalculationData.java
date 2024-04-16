@@ -42,9 +42,7 @@ public class CalculationData implements Serializable {
 
     // Перевизначення методу toString() для зручного виводу
     @Override
-public String toString() {
-    
-    return "CalculationData | Mass = " + mass + " | Height = " + height + " | MaxEnergy = " + maxEnergy;
-}
-
+    public String toString() {
+        return "CalculationData | Mass = " + mass + " | Height = " + height + " | MaxEnergy = " + maxEnergy;
+    }
 }
