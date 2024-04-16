@@ -13,10 +13,10 @@ public class Test {
             System.out.println("Enter the height:");
             double height = Double.parseDouble(reader.readLine());
 
-            double maxEnergy = EnergyCalculator.calculateMaxEnergy(mass, height);
+            double maxEnergy = EnergyCalculator.calculateMaxEnergy(mass, height); // Обчислення максимальної енергії
 
             CalculationData data = new CalculationData(mass, height, maxEnergy);
-            CommandManager commandManager = CommandManager.getInstance();
+            CommandManager commandManager = CommandManager.getInstance(); // Отримання єдиного екземпляру менеджера команд
 
             String input;
             do {
@@ -25,34 +25,34 @@ public class Test {
                 switch (input) {
                     case "view":
                         System.out.println("Serialized data: \n" + data + "\n");
-                        CalculationData deserializedData = (CalculationData) SerializationDemo.deserializeObject("data.ser");
+                        CalculationData deserializedData = (CalculationData) SerializationDemo.deserializeObject("data.ser"); // Десеріалізація даних
                         System.out.println("Deserialized data: \n" + deserializedData + "\n");
-                        Displayable displayable = DisplayFactory.createDisplayable(data);
-                        displayable.display();
+                        Displayable displayable = DisplayFactory.createDisplayable(data); // Створення об'єкта відображення
+                        displayable.display(); // Виведення даних
                         break;
                     case "quit":
-                        System.out.println("Exiting program...");
+                        System.out.println("Exiting program..."); // Вихід з програми
                         break;
                     case "save":
-                        SerializationDemo.serializeObject(data, "data.ser");
-                        System.out.println("Data saved successfully.");
+                        SerializationDemo.serializeObject(data, "data.ser"); // Серіалізація даних
+                        System.out.println("Data saved successfully."); // Повідомлення про успішне збереження
                         break;
                     case "undo":
-                        commandManager.undoLastCommand();
-                        System.out.println("Successful.");
+                        commandManager.undoLastCommand(); // Відміна останньої команди
+                        System.out.println("Successful."); // Повідомлення про успішну операцію
                         break;
                     case "process":
-                        processCollection(data);
+                        processCollection(data); // Обробка колекції даних
                         break;
-                        case "queue":
+                    case "queue":
                         System.out.println("Enter the new mass:");
                         double newMass = Double.parseDouble(reader.readLine());
                         System.out.println("Enter the new height:");
                         double newHeight = Double.parseDouble(reader.readLine());
-                        addToCommandQueue(data, newMass, newHeight);
+                        addToCommandQueue(data, newMass, newHeight); // Додавання команди до черги
                         break;
                     default:
-                        System.out.println("Invalid command. Please try again.");
+                        System.out.println("Invalid command. Please try again."); // Повідомлення про невідому команду
                 }
             } while (!input.equals("quit"));
         } catch (IOException | ClassNotFoundException | NumberFormatException e) {
@@ -68,18 +68,18 @@ public class Test {
         double maxHeight = collection.parallelStream().mapToDouble(CalculationData::getHeight).max().orElse(0);
         double averageMaxEnergy = collection.parallelStream().mapToDouble(CalculationData::getMaxEnergy).average().orElse(0);
 
-        System.out.println("Minimum Mass: " + minMass);
-        System.out.println("Maximum Height: " + maxHeight);
-        System.out.println("Average Max Energy: " + averageMaxEnergy);
+        System.out.println("Minimum Mass: " + minMass); // Виведення мінімальної маси
+        System.out.println("Maximum Height: " + maxHeight); // Виведення максимальної висоти
+        System.out.println("Average Max Energy: " + averageMaxEnergy); // Виведення середньої максимальної енергії
     }
 
     private static void addToCommandQueue(CalculationData data, double newMass, double newHeight) {
-        Command changeMassCommand = new ChangeMassCommand(data, newMass);
-        Command changeHeightCommand = new ChangeHeightCommand(data, newHeight);
+        Command changeMassCommand = new ChangeMassCommand(data, newMass); // Команда зміни маси
+        Command changeHeightCommand = new ChangeHeightCommand(data, newHeight); // Команда зміни висоти
     
-        CommandManager commandManager = CommandManager.getInstance();
-        commandManager.executeCommand(changeMassCommand);
-        commandManager.executeCommand(changeHeightCommand);
+        CommandManager commandManager = CommandManager.getInstance(); // Отримання єдиного екземпляру менеджера команд
+        commandManager.executeCommand(changeMassCommand); // Виконання команди зміни маси
+        commandManager.executeCommand(changeHeightCommand); // Виконання команди зміни висоти
     }
     
     // Приклад створення колекції для обробки

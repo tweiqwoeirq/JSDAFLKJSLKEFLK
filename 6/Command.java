@@ -1,4 +1,4 @@
 public interface Command {
-    void execute();
-    void undo();
+    void execute(); // Інтерфейс команди для виконання дії
+    void undo(); // Інтерфейс команди для відміни останньої дії
 }
